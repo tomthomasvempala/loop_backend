@@ -17,8 +17,8 @@ def generate_report_thread(report_id,count):
     disinct_store_ids = db['store_status'].distinct('store_id')
     if count != 0 :
         disinct_store_ids = disinct_store_ids[0:int(count)]
-    else:
-        disinct_store_ids = disinct_store_ids[0:3]
+    # else:
+    #     disinct_store_ids = disinct_store_ids[0:3]
     report = []
     for store_id in disinct_store_ids:
         store_report = generate_store_report(store_id)
