@@ -110,20 +110,23 @@ def calculate_overlap_minutes(time_frame1_start, time_frame1_end, time_frame2_st
         return 0
 
 def find_overlap(time_frame1_start, time_frame1_end, time_frame2_start, time_frame2_end):
+    try:
     # Parse the time frames into datetime objects
-    start1 = datetime.strptime(time_frame1_start, "%H:%M:%S")
-    end1 = datetime.strptime(time_frame1_end, "%H:%M:%S")
-    start2 = datetime.strptime(time_frame2_start, "%H:%M:%S")
-    end2 = datetime.strptime(time_frame2_end, "%H:%M:%S")
+        start1 = datetime.strptime(time_frame1_start, "%H:%M:%S")
+        end1 = datetime.strptime(time_frame1_end, "%H:%M:%S")
+        start2 = datetime.strptime(time_frame2_start, "%H:%M:%S")
+        end2 = datetime.strptime(time_frame2_end, "%H:%M:%S")
 
-    # Find the maximum of the start times and the minimum of the end times
-    overlap_start = max(start1, start2)
-    overlap_end = min(end1, end2)
+        # Find the maximum of the start times and the minimum of the end times
+        overlap_start = max(start1, start2)
+        overlap_end = min(end1, end2)
 
-    # Check if there is an overlap
-    if overlap_start <= overlap_end:
-        return overlap_start.strftime("%H:%M:%S"), overlap_end.strftime("%H:%M:%S")
-    else:
+        # Check if there is an overlap
+        if overlap_start <= overlap_end:
+            return overlap_start.strftime("%H:%M:%S"), overlap_end.strftime("%H:%M:%S")
+        else:
+            return None,None
+    except:
         return None,None
     
 def subtract_hours_from_utc(utc_time_str, hours_to_subtract):
